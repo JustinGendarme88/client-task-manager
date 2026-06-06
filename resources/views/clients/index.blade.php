@@ -39,7 +39,23 @@
                                         @endif
                                     </div>
 
-                                    <span class="badge bg-secondary">{{ $task->status }}</span>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <form method="POST" action="{{ route('tasks.updateStatus', $task) }}">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button class="btn btn-sm btn-outline-primary" type="submit">
+                                                {{ $task->status }}
+                                            </button>
+                                        </form>
+
+                                        <form method="POST" action="{{ route('tasks.destroy', $task) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-outline-danger" type="submit">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>

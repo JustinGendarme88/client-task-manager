@@ -14,3 +14,6 @@ Route::post('/clients', [ClientController::class, 'store'])->name('clients.store
 use App\Http\Controllers\TaskController;
 
 Route::post('/clients/{client}/tasks', [TaskController::class, 'store'])->name('tasks.store');
+
+Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
