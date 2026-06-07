@@ -75,12 +75,12 @@ Justin Gendarme
 
 ### Dashboard
 
-![Dashboard](screenshots/homepage.png)
+![Dashboard](screenshots/homepage.PNG)
 
 ### Add Client
 
-![Add Client](screenshots/add-client.png)
+![Add Client](screenshots/add-client.PNG)
 
 ### Task Management
 
-![Task Management](screenshots/tasks.png)
+![Task Management](screenshots/tasks.PNG)
