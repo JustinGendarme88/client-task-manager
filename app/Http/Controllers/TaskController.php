@@ -32,7 +32,10 @@ class TaskController extends Controller
             'status' => $nextStatus,
         ]);
 
-        return redirect()->route('clients.index');
+        return response()->json([
+            'id' => $task->id,
+            'status' => $task->status,
+        ]);
     }
 
     public function destroy(Task $task)

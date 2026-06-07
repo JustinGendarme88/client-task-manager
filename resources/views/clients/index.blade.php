@@ -4,7 +4,6 @@
     <title>Client Task Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-light">
     <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -40,13 +39,12 @@
                                     </div>
 
                                     <div class="d-flex gap-2 align-items-center">
-                                        <form method="POST" action="{{ route('tasks.updateStatus', $task) }}">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button class="btn btn-sm btn-outline-primary" type="submit">
-                                                {{ $task->status }}
-                                            </button>
-                                        </form>
+                                        <button
+                                            class="btn btn-sm btn-outline-primary task-status-btn"
+                                            data-url="{{ route('tasks.updateStatus', $task) }}"
+                                        >
+                                            {{ $task->status }}
+                                        </button>
 
                                         <form method="POST" action="{{ route('tasks.destroy', $task) }}">
                                             @csrf
@@ -80,5 +78,23 @@
             </div>
         @endforeach
     </div>
+    <script>
+        document.querySelectorAll('.task-status-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const response = await fetch(button.dataset.url, {
+                    method: 'PATCH',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                button.textContent = data.status;
+            });
+        });
+    </script>
 </body>
 </html>
